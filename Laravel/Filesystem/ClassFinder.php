@@ -2,7 +2,7 @@
 
 namespace Laravel\Filesystem;
 
-use Laravel\Finder\Finder;
+use Symfony\Component\Finder\Finder;
 
 class ClassFinder
 {

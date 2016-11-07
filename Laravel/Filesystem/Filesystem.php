@@ -4,7 +4,7 @@ namespace Illuminate\Filesystem;
 
 use ErrorException;
 use FilesystemIterator;
-use Laravel\Finder\Finder;
+use Symfony\Component\Finder\Finder;
 use Laravel\Support\Traits\Macroable;
 use Laravel\Contracts\Filesystem\FileNotFoundException;
 
