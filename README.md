@@ -1,1 +1,1 @@
-Laravel 数据库迁移 移植到think中
+"# laravelmigrations" 

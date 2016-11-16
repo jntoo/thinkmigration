@@ -13,6 +13,8 @@ use think\console\Input;
 use think\console\input\Option as InputOption;
 use think\console\Output;
 use think\laravel\command\LaravelCommand;
+use Laravel\Support\Collection;
+
 
 class Status extends LaravelCommand
 {

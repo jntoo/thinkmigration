@@ -13,6 +13,7 @@ namespace library\sysfony\console;
 
 use think\console\Output as OutputInterface;
 use library\sysfony\console\exception\InvalidArgumentException;
+use think\console\output\Formatter as OutputFormatterInterface;
 
 /**
  * Provides helpers to display a table.
@@ -62,6 +63,9 @@ class Table
      */
     private $style;
 
+    /** @var  OutputFormatterInterface */
+    private $formatter;
+
     /**
      * @var array
      */
@@ -79,7 +83,7 @@ class Table
     public function __construct(OutputInterface $output)
     {
         $this->output = $output;
-
+        $this->formatter = new OutputFormatterInterface();
         if (!self::$styles) {
             self::$styles = self::initStyles();
         }
@@ -388,7 +392,9 @@ class Table
             return sprintf($style->getBorderFormat(), str_repeat($style->getHorizontalBorderChar(), $width));
         }
 
-        $width += Helper::strlen($cell) - Helper::strlenWithoutDecoration($this->output->getFormatter(), $cell);
+        $width += self::strlen($cell) - self::strlenWithoutDecoration(
+                $this->formatter , $cell
+            );
         $content = sprintf($style->getCellRowContentFormat(), $cell);
 
         return sprintf($cellFormat, str_pad($content, $width, $style->getPaddingChar(), $style->getPadType()));
@@ -640,12 +646,43 @@ class Table
 
         if (isset($row[$column])) {
             $cell = $row[$column];
-            $cellWidth = Helper::strlenWithoutDecoration($this->output->getFormatter(), $cell);
+            $cellWidth = self::strlenWithoutDecoration(
+                $this->formatter, $cell
+            );
         }
 
         $columnWidth = isset($this->columnWidths[$column]) ? $this->columnWidths[$column] : 0;
 
         return max($cellWidth, $columnWidth);
+    }
+
+    /**
+     * Returns the length of a string, using mb_strwidth if it is available.
+     *
+     * @param string $string The string to check its length
+     *
+     * @return int The length of the string
+     */
+    public static function strlen($string)
+    {
+        if (false === $encoding = mb_detect_encoding($string, null, true)) {
+            return strlen($string);
+        }
+
+        return mb_strwidth($string, $encoding);
+    }
+
+    public static function strlenWithoutDecoration(OutputFormatterInterface $formatter, $string)
+    {
+        $isDecorated = $formatter->isDecorated();
+        $formatter->setDecorated(false);
+        // remove <...> formatting
+        $string = $formatter->format($string);
+        // remove already formatted characters
+        $string = preg_replace("/\033\[[^m]*m/", '', $string);
+        $formatter->setDecorated($isDecorated);
+
+        return self::strlen($string);
     }
 
     /**

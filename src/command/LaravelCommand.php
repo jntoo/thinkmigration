@@ -23,6 +23,10 @@ use Laravel\Filesystem\Filesystem;
 use Laravel\Migrations\DatabaseMigrationRepository;
 use library\sysfony\console\Table;
 
+
+use Laravel\Contracts\Support\Arrayable;
+
+
 abstract class LaravelCommand extends Command
 {
     protected $config;
@@ -217,7 +221,7 @@ abstract class LaravelCommand extends Command
         $this->output->writeln('');
         $confirmed = $this->confirm('Do you really wish to run this command?');
         if (! $confirmed) {
-            $this->comment('Command Cancelled!');
+            $this->comment('Cancel Success！');
             return false;
         }
         return true;
@@ -225,7 +229,7 @@ abstract class LaravelCommand extends Command
 
     protected function confirm($question, $default = true)
     {
-        $this->output->confirm($this->input , $question , $default);
+        return $this->output->confirm($this->input , $question , $default);
     }
 
     /**
