@@ -1,6 +1,6 @@
 <?php
 
-namespace Illuminate\Filesystem;
+namespace Laravel\Filesystem;
 
 use ErrorException;
 use FilesystemIterator;
@@ -394,6 +394,11 @@ class Filesystem
      */
     public function directories($directory)
     {
+        if(substr($directory , -1) == '/')
+        {
+            // 有结束
+            $directory = substr($directory , 0 , -1);
+        }
         $directories = [];
 
         foreach (Finder::create()->in($directory)->directories()->depth(0) as $dir) {

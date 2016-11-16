@@ -12,7 +12,8 @@
 	"autoload": {
 		"psr-4": {
 			"Laravel\\": "Laravel",
-			"think\\laravel\\": "src"
+			"think\\laravel\\": "src",
+            "library\\":"library"
 		},
 		"files": [
 			"src/config.php"

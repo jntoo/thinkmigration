@@ -12,7 +12,7 @@ use think\Config;
 use Laravel\Container\Container;
 use Laravel\Connectors\ConnectionFactory;
 use Laravel\Connection\Connection;
-
+use Laravel\Connection\ConnectionResolver;
 
 class App{
     /**
@@ -47,7 +47,11 @@ class App{
 
         $ConnectionFactory = new ConnectionFactory(new Container);
         $connection = $ConnectionFactory->make($config);
-        self::$apps['db'] = $connection;
+        self::$apps['db'] = &$connection;
+        $ConnectionResolver = new ConnectionResolver();
+        $ConnectionResolver->addConnection('default' , $connection);
+        $ConnectionResolver->setDefaultConnection('default');
+        self::$apps['resolver'] = &$ConnectionResolver;
     }
 
     /**
@@ -58,5 +62,12 @@ class App{
         self::init();
         return self::$apps['db'];
     }
+
+    static public function resolver()
+    {
+        self::init();
+        return self::$apps['resolver'];
+    }
+
 }
 

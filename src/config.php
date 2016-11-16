@@ -11,4 +11,6 @@
     "think\\laravel\\command\\migrate\\Rollback",
     "think\\laravel\\command\\migrate\\Reset",
     "think\\laravel\\command\\migrate\\Rollback",
+    "think\\laravel\\command\\migrate\\Status",
+    "think\\laravel\\command\\migrate\\Install"
 ]);

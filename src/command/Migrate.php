@@ -12,6 +12,8 @@ use think\console\Input;
 use think\console\input\Option as InputOption;
 use think\console\Output;
 use think\migration\command\AbstractCommand;
+use Laravel\Migrations\Migrator;
+use think\laravel\command\LaravelCommand;
 
 class Migrate extends LaravelCommand
 {
@@ -21,9 +23,13 @@ class Migrate extends LaravelCommand
     protected function configure()
     {
         parent::configure();
-
-        $this->setName('migrate')
+        $this->setName('jntoo:run')
             ->setDescription('Run Migration')
+            ->addOption('module', 'm', InputOption::VALUE_OPTIONAL, 'Select Modules Path，default common')
+            ->addOption('force', 'f', InputOption::VALUE_NONE, 'Force the operation to run when in production.')
+            ->addOption('pretend', null, InputOption::VALUE_NONE, 'Dump the SQL queries that would be run.')
+            ->addOption('seed', null, InputOption::VALUE_NONE, 'Indicates if the seed task should be re-run.')
+            ->addOption('step', null, InputOption::VALUE_NONE, 'Force the migrations to be run so they can be rolled back individually.')
             ->setHelp(
                 <<<EOT
                 The <info>migrate</info> command runs all available migrations, optionally up to a specific version
@@ -41,40 +47,24 @@ EOT
     protected function execute(Input $input, Output $output)
     {
         $this->bootstrap($input, $output);
-
-        $version     = $input->getOption('target');
-        $date        = $input->getOption('date');
-
-        $dbConfig = $this->config->getDbConfig();
+        $this->prepareDatabase();
         
-        if (isset($dbConfig['adapter'])) {
-            $output->writeln('<info>using adapter</info> ' . $dbConfig['adapter']);
+        $this->migrator->run($this->getMigrationPaths(), [
+            'pretend' => $this->option('pretend'),
+            'step' => $this->option('step'),
+            'module'=>$this->getModule()
+        ]);
+
+        foreach ($this->migrator->getNotes() as $note) {
+            $this->output->writeln($note);
         }
-
-        if (isset($dbConfig['name'])) {
-            $output->writeln('<info>using database</info> ' . $dbConfig['name']);
-        } else {
-            $output->writeln('<error>Could not determine database name! Please specify a database name in your config file.</error>');
-            return 1;
+        // Finally, if the "seed" option has been given, we will re-run the database
+        // seed task to re-populate the database, which is convenient when adding
+        // a migration and a seed at the same time, as it is only this command.
+        if ($this->option('seed')) {
+            $this->line('暂时不支持seed');
+            //$this->call('db:seed', ['--force' => true]);
         }
-
-        if (isset($dbConfig['table_prefix'])) {
-            $output->writeln('<info>using table prefix</info> ' . $dbConfig['table_prefix']);
-        }
-
-
-        // run the migrations
-        $start = microtime(true);
-        if (null !== $date) {
-            $this->getManager()->migrateToDateTime(new \DateTime($date));
-        } else {
-            $this->getManager()->migrate($version);
-        }
-        $end = microtime(true);
-
-        $output->writeln('');
-        $output->writeln('<comment>All Done. Took ' . sprintf('%.4fs', $end - $start) . '</comment>');
-
         return 0;
     }
 }

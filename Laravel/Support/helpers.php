@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Debug\Dumper;
-use Illuminate\Contracts\Support\Htmlable;
+use Laravel\Support\Arr;
+use Laravel\Support\Str;
+use Laravel\Support\Collection;
+use Laravel\Support\Debug\Dumper;
+use Laravel\Contracts\Support\Htmlable;
 
 if (! function_exists('append_config')) {
     /**
