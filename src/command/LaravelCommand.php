@@ -105,7 +105,9 @@ abstract class LaravelCommand extends Command
     protected function getMigrationPath()
     {
         $module = $this->getModule('module');
+
         $module or $module = 'common';
+        $this->output->writeln($module);
         $dir = APP_PATH.$module.'/database/migrations';
         if(!is_dir($dir)){
             @mkdir(APP_PATH.$module.'/database');

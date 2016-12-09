@@ -54,7 +54,7 @@ EOT
             'step' => $this->option('step'),
             'module'=>$this->getModule()
         ]);
-
+        
         foreach ($this->migrator->getNotes() as $note) {
             $this->output->writeln($note);
         }

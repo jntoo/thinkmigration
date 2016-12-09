@@ -26,7 +26,7 @@ class Status extends LaravelCommand
         parent::configure();
         $this->setName('jntoo:status')
             ->setDescription('Show the status of each migration')
-            ->addOption('module', 'm', InputOption::VALUE_NONE, 'Select Modules Path')
+            ->addOption('module', 'm', InputOption::VALUE_REQUIRED, 'Select Modules Path')
             ->setHelp(
                 <<<EOT
                 Show the status of each migration

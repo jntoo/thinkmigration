@@ -17,7 +17,9 @@ class DummyClass extends Migration
         Schema::create('DummyTable', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('site_id')->index();
-            $table->timestamps();
+
+            $table->unsignedInteger('addtime');
+            $table->unsignedInteger('lastdotime');
         });
     }
 

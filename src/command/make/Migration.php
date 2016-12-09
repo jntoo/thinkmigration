@@ -28,13 +28,12 @@ class Migration extends LaravelCommand
     protected function configure()
     {
         parent::configure();
-
         $this->setName('jntoo:create')
             ->setDescription('Create a new migration')
             ->addArgument('name', InputArgument::REQUIRED, 'What is the name of the migration?')
-            ->addOption('module', 'm', InputOption::VALUE_NONE, 'APP_PATH module to create a new database migration.')
-            ->addOption('create' , 'c' , InputOption::VALUE_NONE , 'The table to be created.')
-            ->addOption('table' , 't' , InputOption::VALUE_NONE , 'The table to migrate.')
+            ->addOption('module', 'm', InputOption::VALUE_REQUIRED, 'APP_PATH module to create a new database migration.')
+            ->addOption('create' , 'c' , InputOption::VALUE_REQUIRED , 'The table to be created.')
+            ->addOption('table' , 't' , InputOption::VALUE_REQUIRED , 'The table to migrate.')
             ->setHelp(sprintf(
                 '%sCreate a new migration file%s',
                 PHP_EOL,
