@@ -71,6 +71,11 @@ class MySqlGrammar extends Grammar
         } elseif (! is_null($engine = $connection->getConfig('engine'))) {
             $sql .= ' engine = '.$engine;
         }
+        
+        if(!empty($blueprint->comment)){
+            $blueprint->comment = str_replace("'", "\'", $blueprint->comment);
+            $sql .= " comment = '".$blueprint->comment."'";
+        }
 
         return $sql;
     }

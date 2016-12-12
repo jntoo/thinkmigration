@@ -35,7 +35,7 @@ class Blueprint
      *
      * @var string
      */
-    public $engine;
+    public $engine = 'InnoDB';
 
     /**
      * The default character set that should be used for the table.
@@ -54,6 +54,12 @@ class Blueprint
      */
     public $temporary = false;
 
+    /**
+     * 表注释
+     *
+     * @var string
+     */
+    public $comment;
     /**
      * Create a new schema blueprint.
      *
@@ -872,6 +878,21 @@ class Blueprint
     public function ipAddress($column)
     {
         return $this->addColumn('ipAddress', $column);
+    }
+    
+    /**
+     * 设置省市区
+     * @param string $province
+     * @param string $city
+     * @param string $district
+     * @return $this
+     */
+    public function region($province = 'province' , $city = 'city' , $district = 'district')
+    {
+        $this->unsignedInteger($province);
+        $this->unsignedInteger($city);
+        $this->unsignedInteger($district);
+        return $this;
     }
 
     /**

@@ -145,6 +145,17 @@ class Fluent implements ArrayAccess, Arrayable, Jsonable, JsonSerializable
         return $this;
     }
 
+    public function index( $name = true )
+    {
+        $this->attributes['index'] = $name;
+        return $this;
+    }
+    
+    public function comment($name)
+    {
+        $this->attributes['comment'] = $name;
+    }
+
     /**
      * Dynamically retrieve the value of an attribute.
      *
