@@ -25,7 +25,7 @@ class Refresh extends LaravelCommand
         $this->setName('jntoo:refresh')
             ->setDescription('Reset and re-run all migrations')
             ->addOption('module', 'm', InputOption::VALUE_REQUIRED, 'Select Modules Path，default common')
-            ->addOption('force', 'f', InputOption::VALUE_REQUIRED, 'Force the operation to run when in production.')
+            ->addOption('force', 'f', InputOption::VALUE_NONE, 'Force the operation to run when in production.')
             ->addOption('seed', null, InputOption::VALUE_REQUIRED, 'Indicates if the seed task should be re-run.')
             ->addOption('seeder', null, InputOption::VALUE_REQUIRED, 'The class name of the root seeder.')
             ->addOption('step', null, InputOption::VALUE_REQUIRED, 'Force the migrations to be run so they can be rolled back individually.')

@@ -25,7 +25,7 @@ class Reset extends LaravelCommand
         $this->setName('jntoo:reset')
             ->setDescription('Rollback all database migrations')
             ->addOption('module', 'm', InputOption::VALUE_REQUIRED, 'Select Modules Path')
-            ->addOption('force', 'f', InputOption::VALUE_REQUIRED, 'Force the operation to run when in production.')
+            ->addOption('force', 'f', InputOption::VALUE_NONE, 'Force the operation to run when in production.')
             ->addOption('pretend', null, InputOption::VALUE_REQUIRED, 'Dump the SQL queries that would be run.')
             ->setHelp(
                 <<<EOT

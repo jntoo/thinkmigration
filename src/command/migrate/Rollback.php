@@ -27,7 +27,7 @@ class Rollback extends LaravelCommand
         $this->setName('jntoo:rollback')
             ->setDescription('Rollback the last database migration')
             ->addOption('module', 'm', InputOption::VALUE_REQUIRED, 'Select Modules Path')
-            ->addOption('force', 'f', InputOption::VALUE_REQUIRED, 'Force the operation to run when in production.')
+            ->addOption('force', 'f', InputOption::VALUE_NONE, 'Force the operation to run when in production.')
             ->addOption('pretend', null, InputOption::VALUE_REQUIRED, 'Dump the SQL queries that would be run.')
             ->addOption('step', null, InputOption::VALUE_REQUIRED, 'The number of migrations to be reverted.')
             ->setHelp(

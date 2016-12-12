@@ -25,11 +25,11 @@ class Migrate extends LaravelCommand
         parent::configure();
         $this->setName('jntoo:run')
             ->setDescription('Run Migration')
-            ->addOption('module', 'm', InputOption::VALUE_OPTIONAL, 'Select Modules Path，default common')
-            ->addOption('force', 'f', InputOption::VALUE_NONE, 'Force the operation to run when in production.')
-            ->addOption('pretend', null, InputOption::VALUE_NONE, 'Dump the SQL queries that would be run.')
-            ->addOption('seed', null, InputOption::VALUE_NONE, 'Indicates if the seed task should be re-run.')
-            ->addOption('step', null, InputOption::VALUE_NONE, 'Force the migrations to be run so they can be rolled back individually.')
+            ->addOption('module', 'm', InputOption::VALUE_REQUIRED, 'Select Modules Path，default common')
+            //->addOption('force', 'f', InputOption::VALUE_NONE, 'Force the operation to run when in production.')
+            ->addOption('pretend', null, InputOption::VALUE_REQUIRED, 'Dump the SQL queries that would be run.')
+            ->addOption('seed', null, InputOption::VALUE_REQUIRED, 'Indicates if the seed task should be re-run.')
+            ->addOption('step', null, InputOption::VALUE_REQUIRED, 'Force the migrations to be run so they can be rolled back individually.')
             ->setHelp(
                 <<<EOT
                 The <info>migrate</info> command runs all available migrations, optionally up to a specific version
