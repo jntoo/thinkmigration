@@ -18,8 +18,8 @@ class DummyClass extends Migration
             $table->increments('id');
             $table->unsignedInteger('site_id')->index();
 
-            $table->unsignedInteger('addtime');
-            $table->unsignedInteger('lastdotime');
+            $table->unsignedInteger('create_time');
+            $table->unsignedInteger('update_time');
         });
     }
 
