@@ -5,6 +5,7 @@
 namespace laravel;
 use Laravel\Schema\Builder;
 use Laravel\App;
+
 class Schema
 {
     /**
@@ -92,7 +93,7 @@ class Schema
      * @param  \Closure  $callback
      * @return \Laravel\Schema\Blueprint
      */
-    static public function table($table, Closure $callback)
+    static public function table($table, \Closure $callback)
     {
         return self::call(__FUNCTION__ , func_get_args());
     }
