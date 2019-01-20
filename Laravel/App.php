@@ -22,7 +22,8 @@ class App{
     static private function init()
     {
         if(!self::$apps){
-            import('Laravel\\Support\\helpers');
+            inclide_once(__DIR__ . '/Support/helpers.php');
+            //think\Loader::import('Laravel\\Support\\helpers');
             self::initConnection();
         }
     }

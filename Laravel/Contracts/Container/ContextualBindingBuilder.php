@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\contracts\container;
+namespace Laravel\Contracts\Container;
 
 interface ContextualBindingBuilder
 {
