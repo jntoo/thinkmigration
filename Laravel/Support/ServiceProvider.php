@@ -1,6 +1,6 @@
 <?php
 
-namespace Illuminate\Support;
+namespace Laravel\Support;
 
 use Illuminate\Console\Events\ArtisanStarting;
 

@@ -2,13 +2,13 @@
 
 namespace Laravel\Connection;
 
-use Laravel\schema\MySqlBuilder;
-use Laravel\query\processors\MySqlProcessor;
+use Laravel\Schema\MySqlBuilder;
+use Laravel\Query\Processors\MySqlProcessor;
 
 use Doctrine\DBAL\Driver\PDOMySql\Driver as DoctrineDriver;
 
-use Laravel\query\grammars\MySqlGrammar as QueryGrammar;
-use Laravel\schema\grammars\MySqlGrammar as SchemaGrammar;
+use Laravel\Query\Grammars\MySqlGrammar as QueryGrammar;
+use Laravel\Schema\Grammars\MySqlGrammar as SchemaGrammar;
 
 class MySqlConnection extends Connection
 {

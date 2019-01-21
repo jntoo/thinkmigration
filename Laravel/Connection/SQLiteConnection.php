@@ -2,10 +2,10 @@
 
 namespace Laravel\Connection;
 
-use Laravel\query\processors\SQLiteProcessor;
+use Laravel\Query\Processors\SQLiteProcessor;
 use Doctrine\DBAL\Driver\PDOSqlite\Driver as DoctrineDriver;
-use Laravel\query\grammars\SQLiteGrammar as QueryGrammar;
-use Laravel\schema\grammars\SQLiteGrammar as SchemaGrammar;
+use Laravel\Query\Grammars\SQLiteGrammar as QueryGrammar;
+use Laravel\Schema\Grammars\SQLiteGrammar as SchemaGrammar;
 
 class SQLiteConnection extends Connection
 {

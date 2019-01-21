@@ -2,7 +2,7 @@
 
 
 
-namespace laravel;
+namespace Laravel;
 use Laravel\Schema\Builder;
 use Laravel\App;
 

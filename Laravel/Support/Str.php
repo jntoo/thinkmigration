@@ -1,8 +1,8 @@
 <?php
 
-namespace Laravel\support;
+namespace Laravel\Support;
 
-use Laravel\Support\traits\Macroable;
+use Laravel\Support\Traits\Macroable;
 
 class Str
 {

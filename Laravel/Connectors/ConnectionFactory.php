@@ -3,7 +3,7 @@
 namespace Laravel\Connectors;
 
 use PDO;
-use Laravel\support\Arr;
+use Laravel\Support\Arr;
 use InvalidArgumentException;
 use Laravel\Connection\MySqlConnection;
 use Laravel\Connection\SQLiteConnection;

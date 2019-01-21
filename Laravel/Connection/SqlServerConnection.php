@@ -6,9 +6,9 @@ use Closure;
 use Exception;
 use Throwable;
 use Doctrine\DBAL\Driver\PDOSqlsrv\Driver as DoctrineDriver;
-use Laravel\query\processors\SqlServerProcessor;
-use Laravel\query\grammars\SqlServerGrammar as QueryGrammar;
-use Laravel\schema\grammars\SqlServerGrammar as SchemaGrammar;
+use Laravel\Query\Processors\SqlServerProcessor;
+use Laravel\Query\Grammars\SqlServerGrammar as QueryGrammar;
+use Laravel\Schema\Grammars\SqlServerGrammar as SchemaGrammar;
 
 class SqlServerConnection extends Connection
 {

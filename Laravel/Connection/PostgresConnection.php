@@ -2,11 +2,11 @@
 
 namespace Laravel\Connection;
 
-use Laravel\schema\PostgresBuilder;
+use Laravel\Schema\PostgresBuilder;
 use Doctrine\DBAL\Driver\PDOPgSql\Driver as DoctrineDriver;
-use Laravel\query\processors\PostgresProcessor;
-use Laravel\query\grammars\PostgresGrammar as QueryGrammar;
-use Laravel\schema\grammars\PostgresGrammar as SchemaGrammar;
+use Laravel\Query\Processors\PostgresProcessor;
+use Laravel\Query\Grammars\PostgresGrammar as QueryGrammar;
+use Laravel\Schema\Grammars\PostgresGrammar as SchemaGrammar;
 
 class PostgresConnection extends Connection
 {

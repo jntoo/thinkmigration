@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\support\traits;
+namespace Laravel\Support\Traits;
 
 use Closure;
 use BadMethodCallException;
